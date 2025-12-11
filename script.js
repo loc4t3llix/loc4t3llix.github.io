@@ -12,8 +12,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add active class to navigation links on scroll
+// Combined scroll event handler for navigation and navbar background
 window.addEventListener('scroll', () => {
+    // Update active navigation link
     let current = '';
     const sections = document.querySelectorAll('section');
     
@@ -31,6 +32,15 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
+
+    // Update navbar background on scroll
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.style.backgroundColor = 'rgba(2, 6, 23, 0.95)';
+        navbar.style.backdropFilter = 'blur(10px)';
+    } else {
+        navbar.style.backgroundColor = 'var(--darker-bg)';
+    }
 });
 
 // Add animation on scroll
@@ -59,29 +69,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Add typing effect to hero title (optional enhancement)
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
 
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'rgba(2, 6, 23, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
-    } else {
-        navbar.style.backgroundColor = 'var(--darker-bg)';
-    }
-});
